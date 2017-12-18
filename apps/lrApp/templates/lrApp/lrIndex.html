@@ -1,0 +1,44 @@
+{% extends 'lrBase.html' %}
+
+{% block title %}
+Index Page
+{% endblock title %}
+
+{% block content %}
+
+<div class="wrapper">
+    {% if messages %}
+    <div class = "messages">
+        {% for message in messages %}
+            <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                {{ message }}
+            </p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div class="forms">
+        <div class="regForm">
+            <h2>Registration</h2>
+            <form action="{% url 'lr_create' %}" method = "post">
+                {% csrf_token %}
+                First Name: <input type="text" name = "fName">
+                Last Name: <input type="text" name = "lName">
+                Email: <input type="text" name = "email">
+                Password: <input type="password" name = "password">
+                Confirm Password: <input type="password" name = "cPassword">
+                <input type="submit" class = "button">
+            </form>
+        </div>
+        <div class="loginForm">
+            <h2>Login</h2>
+            <form action="{% url 'lr_login' %}" method = "post">
+                {% csrf_token %}
+                Email: <input type="text" name = "email">
+                Password: <input type="password" name = "password">
+                <input type="submit" class = "button">
+            </form>
+        </div>
+    </div><!-- end forms -->
+</div>
+
+{% endblock content %}

@@ -1,0 +1,13 @@
+{% extends 'lrBase.html' %}
+
+{% block title %}
+Successful login
+{% endblock title %}
+
+{% block content %}
+<div class="wrapper">
+    <h1>Success! Welcome, {{ request.session.name }}!</h1>
+    <p>{{ request.session.successMessage }}</p>
+    <a href="{% url 'lr_logout' %}">Logout</a>
+</div>
+{% endblock content %}
